@@ -16,3 +16,15 @@ class Comments:
     @classmethod
     def clear_reviews(cls):
         Comments.all_comments.clear()
+    
+    @classmethod
+    def get_comments(cls,id):
+
+        response = []
+
+        for comments in cls.all_comments:
+            if comments.pitch_id == id:
+                response.append(comments)
+
+        return response
+    
