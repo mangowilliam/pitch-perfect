@@ -6,3 +6,8 @@ class CommentsForm(FlaskForm):
 
     comment = TextAreaField('Movie review', validators=[Required()])
     submit = SubmitField('Submit')
+
+class PitchForm(FlaskForm):
+    title= StringField('Title',validators=[Required()])
+    pitch = TextAreaField('pitch', validators=[Required()])
+    submit = SubmitField('pitches') 

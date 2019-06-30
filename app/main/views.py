@@ -1,8 +1,8 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template,request,redirect,url_for,flash
 from . import main
 from ..comments import Comments
-from ..user import User
-from .forms import CommentsForm
+from ..user import User,Pitch
+from .forms import CommentsForm,PitchForm
 
 
 # Views
@@ -16,8 +16,20 @@ def index():
     return render_template('users.html', title = title)
 
 @main.route('/user/comments/new/<int:id>', methods = ['GET','POST'])
+@login_required
 def new_comment(id):
     form = CommentsForm()
     
 
-    return render_template('new_review.html', comments_form=form, )
+    return render_template('new_review.html',form=form, )
+# Views
+@main.route('/pitch/new', methods = ['GET','POST'])
+@login_required
+def pitches():
+    form= PitchForm()
+    if form.validate_on_submit():
+        flash("pitch created",'success')
+        return redirect(url_for('home'))
+
+    title = 'Home -new pitch'
+    return render_template('pitches.html', title = title, form=form)
