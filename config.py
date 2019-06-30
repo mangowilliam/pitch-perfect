@@ -1,9 +1,7 @@
 import os
 class Config:
-    '''
-    General configuration parent class
-    '''
-    pass
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mango:mango@localhost/watchlist'
 
 
 class ProdConfig(Config):
