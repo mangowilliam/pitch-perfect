@@ -1,4 +1,4 @@
-##PITCHES
+## PITCHES
 A web application that lets users submit pitches based on different categories
 
 ## BY William Mango https://github.com/mangowilliam/   01/07/19
