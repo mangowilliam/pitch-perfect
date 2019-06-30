@@ -3,6 +3,7 @@ from . import main
 from ..comments import Comments
 from ..user import User,Pitch
 from .forms import CommentsForm,PitchForm
+from flask_login import login_required
 
 
 # Views
