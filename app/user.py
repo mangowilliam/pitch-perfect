@@ -12,6 +12,8 @@ class User(UserMixin,db.Model):
     image = db.Column(db.String(20), nullable=False, default = "default.jpg")
     password = db.Column(db.String(70), nullable=False)
     pitches = db.relationship('Pitch', backref='author', lazy= "dynamic")
+    bio = db.Column(db.String(255))
+    profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
 
     @property
