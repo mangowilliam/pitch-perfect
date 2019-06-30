@@ -1,5 +1,8 @@
 from flask import render_template
 from app import app
+from comments import Comments
+from .forms import CommentsForm
+
 
 # Views
 @app.route('/')

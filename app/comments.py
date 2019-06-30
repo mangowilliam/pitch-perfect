@@ -2,9 +2,10 @@ class Comments:
     
     all_comments = []
 
-    def __init__(self,pitch_id,description):
+    def __init__(self,pitch_id,description,comments):
         self.pitch_id = pitch_id
         self.description = description
+        self.comments = comments
        
 
 
