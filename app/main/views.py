@@ -14,8 +14,9 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
+    pitches=Pitch.query.all()
     title = 'Home -make the best decition and pitch'
-    return render_template('users.html', title = title)
+    return render_template('users.html', title = title,pitches=pitches)
 
 @main.route('/user/comments/new/<int:id>', methods = ['GET','POST'])
 @login_required
@@ -39,7 +40,11 @@ def pitches():
     form= PitchForm()
     if form.validate_on_submit():
         flash("pitch created",'success')
-        return redirect(url_for('home'))
+        pitch = Pitch(title = form.title.data, content =form.pitch.data,user_id=user_id)
+        db.session.add(pitch)
+        db.session.commit()
+        flash('pitch created','succesful')
+        return redirect(url_for('index'))
 
     title = 'Home -new pitch'
     return render_template('pitches.html', title = title, form=form)
