@@ -3,7 +3,7 @@ from . import main
 from ..comments import Comments
 from ..user import User,Pitch
 from .forms import CommentsForm,PitchForm,UpdateProfile
-from flask_login import login_required
+from flask_login import login_required,current_user
 from .. import db
 
 
@@ -40,11 +40,11 @@ def pitches():
     form= PitchForm()
     if form.validate_on_submit():
         flash("pitch created",'success')
-        pitch = Pitch(title = form.title.data, content =form.pitch.data,user_id=user_id)
+        pitch = Pitch(title = form.title.data, content =form.pitch.data,user_id=current_user.id)
         db.session.add(pitch)
         db.session.commit()
         flash('pitch created','succesful')
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
 
     title = 'Home -new pitch'
     return render_template('pitches.html', title = title, form=form)
@@ -60,7 +60,6 @@ def update_profile(uname):
 
     if form.validate_on_submit():
         user.bio = form.bio.data
-
         db.session.add(user)
         db.session.commit()
 

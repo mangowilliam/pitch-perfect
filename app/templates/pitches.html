@@ -1,5 +1,4 @@
 {% extends 'base.html'%}
-{% import 'macros.html' as macro%}
 {% import 'bootstrap/wtf.html' as wtf%}
 <!DOCTYPE html>
 <html>
@@ -8,12 +7,6 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   
 <body>
-    <!-- Styles block -->
-
-    {% block styles%}
-    {{ super() }}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
-    {% endblock %}
     
     {% block content %}
     <div class="container">
