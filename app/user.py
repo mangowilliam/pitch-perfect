@@ -17,6 +17,7 @@ class User(UserMixin,db.Model):
     image = db.Column(db.String(20), nullable=False, default = "default.jpg")
     password = db.Column(db.String(70), nullable=False)
     pitches = db.relationship('Pitch', backref='author', lazy= "dynamic")
+    comment = db.relationship('Comment', backref = 'user', lazy = 'dynamic')
     pass_secure = db.Column(db.String(255))
 
 
@@ -47,7 +48,26 @@ class Pitch(db.Model):
     title = db.Column(db.String(110), nullable=False)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    category = db.Column(db.String(255), nullable=False)
+    comment = db.relationship('Comment',backref='pitch',lazy='dynamic')
+    
+    @classmethod
+    def get_pitches(cls, id):
+        pitches = Pitch.query.order_by(pitch_id=id).desc().all()
+        return pitches
 
     def __repr__(self):
-        return f'User {self.title}'
+        return f'Pitch {self.description}'
+
+class Comment(db.Model):
+    __tablename__='comments'
+    
+    id = db.Column(db.Integer,primary_key=True)
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable= False)
+    description = db.Column(db.Text)
+
+    
+    def __repr__(self):
+        return f"Comment : id: {self.id} comment: {self.description}"
      
