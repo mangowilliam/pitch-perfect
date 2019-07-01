@@ -1,5 +1,6 @@
-{% extends 'base.html'%}
-{% import 'macros.html' as macro%}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% extends 'bootstrap/base.html' %}
+{% import 'macros.html' as macro %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +10,28 @@
     <title>Document</title>
 </head>
 <body>
+        <div class="row">
+    
+        <div class="card-body text-center">
+        <h4><a>{{pitch.title}}</a></h4>
+        <h5 class="card-text text-center">{{pitch.content}}.</h5>
+        </div>
 
-        {% block content %}
-        <h1>about</h1>
-        {% endblock%}
+        <div class="container">
+        <div class="row">
+        {{wtf.quick_form(form)}}
+        </div>
+        </div>
+    
+        <div class="container">
+            <div class="col-md-12">
+                <h4 >Comments</h4>
+                <p>{{ macro.displayComment(comment) }}</p>
+            </div>
+                
+        </div>
+        
+</div>
 </body>
 </html>
 </html>

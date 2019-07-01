@@ -15,11 +15,23 @@
     <div class="col-md-8">
     
     {{wtf.quick_form(form)}}
-    
-    </div>
-    <div class="col-md-2"></div>
-    </div>
-    </div>
+			<ul style="list-style: none;">
+				{% for pitch in pitches %}
+					<div class="list-group">
+						<a href="#">
+							<div class="list-item">
+								<p>{{pitch.title}}</p>
+							</div>
+							<p>{{ pitch.content }}</p>
+							<p> Posted by {{user.username}}.</p>
+						</a>
+					</div>
+				{% endfor %}
+		</ul>
+		</div>
+	</div>
+</div>
+	
     
     {% endblock%}
 

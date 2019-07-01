@@ -1,0 +1,42 @@
+{% macro display(category_list) %}
+<div class="row">
+	{% if category_list %}
+		{% for category in category_list %}
+		<div class="col-md-6">
+			<h2 class="card-header">{{category.title}}</h2>
+			<h2 class="card-header">{{category.category}}</h2>
+				<blockquote class="blockquote mb-0">
+					<h2>{{category.description}}</h2>
+					<footer class="blockquote-footer"> Posted by {{category.user.username}}</footer>
+				</blockquote>
+				
+				<a href="{{url_for('main.new_comment',pitch_id = category.id)}}" class="btn btn-info"> Add a comment</a>
+		</div>
+
+		{% endfor %}
+	{% else %}
+	{% endif %}
+</div>
+{% endmacro %}
+
+
+
+{% macro displayComment(comments) %}
+<ul>
+
+			{% if comments %}
+			{% for comment in comments %}
+				<div class="row">
+						<a><p>{{ comment.description }}</p></a>
+						<small> posted by {{comment.user.username}}</small>
+				</div>
+			{% endfor %}
+			{% else %}
+			{%endif%}
+
+	</ul>
+	
+			
+
+
+{% endmacro %}
