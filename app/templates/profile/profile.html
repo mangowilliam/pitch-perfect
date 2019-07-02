@@ -24,7 +24,7 @@
     <p>No profile  custompicture</p>
     {% endif %}
     {% if user == current_user %}
-    <a href="{{url_for('main.update_profile',uname=user.username)}}">add a pitch</a>
+    <a href="{{url_for('main.pitches',uname=current_user.username)}}">add a pitch</a>
    {% endif %}
   </div>
 </div>

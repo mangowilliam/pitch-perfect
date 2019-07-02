@@ -2,41 +2,49 @@
 {% import 'macros.html' as macro %}
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+
 <body>
 
-    {% block content %}
-    
-    <div class="container">
-        <h1 class = "text-center">PITCH YOUR IDEAS</h1>
-          <p class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#startups">startups</a>
-          </p>
-          <p class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#charity">charity</a>
-          </p>
-          <p class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#events">events</a>
-          </p>
-        <div class="tab-content">
-          <div id="startups" class="container tab-pane active"><br>
-            {{ macro.display(startupspitch) }}
-            
-          </div>
-          <div id="charity" class="container tab-pane fade"><br>
-            {{ macro.display(charitypitch) }}
-          </div>
-          <div id="events" class="container tab-pane fade"><br>
-            {{ macro.display(eventspitch)}}
-          </div>
-          
-        </div>
-      </div>
-    {% endblock%}
+  {% block content %}
 
-    
+  <div class="container">
+    <h1 class="text-center">PITCH YOUR IDEAS</h1>
+    <p class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#startups">startups</a>
+    </p>
+    <p class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#charity">charity</a>
+    </p>
+    <p class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#events">events</a>
+    </p>
+    <div class="tab-content">
+      <div id="startups" class="container tab-pane active"><br>
+        {{ macro.display(startupspitch) }}
+
+      </div>
+      <div id="charity" class="container tab-pane fade"><br>
+        {{ macro.display(charitypitch) }}
+      </div>
+      <div id="events" class="container tab-pane fade"><br>
+        {{ macro.display(eventspitch)}}
+      </div>
+      {% for pitches in pitches%}
+      <p>{{pitches.id}}</p>
+      <p>{{pitches.title}}</p>
+      <p>{{ pitches.content }}</p>
+      <a href="{{url_for('main.new_comment',pitch_id = pitches.id)}}" class="btn btn-info"> Add a comment</a>
+      {%endfor%}
+
+    </div>
+  </div>
+  {% endblock%}
+
+
 </body>
+
 </html>
